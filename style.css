@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+a {
+    outline: none;
+    color: #ffffff;
+
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.__text {
+    color: #8d8d8d;
+    font-size: 12px;
+    letter-spacing: .15vw;
+    text-transform: uppercase;
+}
+
+.app_wrapper {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+
+    overflow: hidden;
+}
+
+.left_sidebar {
+    width: 30%;
+
+    background-color: #2d2d2d;
+}
+
+.user_block {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    
+    margin-bottom: 25%;
+    padding: 10%;
+}
+
+.user_photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 3vw;
+    height: 3vw;
+
+    margin-right: 5%;
+
+    background-color: #ffffff;
+    border-radius: 50%;
+
+    color: #3866ff;
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+.user_info {
+    color: #ffffff;
+    font-size: 1.25vw;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+}
+
+.navbar .navbar_item {
+    position: relative;
+
+    margin-bottom: 2.5%;
+    padding: 2.5% 10%;
+}
+
+.navbar_item .item_active_elm {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 8px;
+    height: 100%;
+
+    background-color: #4e4e4e;
+}
+
+.navbar_item a {
+    width: 100%;
+
+    font-size: 13px;
+    letter-spacing: .2vw;
+    text-transform: uppercase;
+}
+
+.app_content {
+    width: 70%;
+    height: 100vh;
+
+    padding: 5% 5% 0 5%;
+
+    background-color: #272727;
+
+    overflow-y: scroll;
+}
+
+.app_content_header {
+    display: flex;
+
+    width: 100%;
+
+    margin-bottom: 4em;
+}
+
+.app_content_header .role_block,
+.app_content_header .issues_block {
+    display: flex;
+    flex-direction: column;
+}
+
+.app_content_header .role_block {
+    width: 72.5%;
+}
+
+.app_content_header .issues_block {
+    width: 27.5%;
+}
+
+.app_content_header .role_block .__text,
+.app_content_header .issues_block .__text {
+    margin-bottom: 1em;
+}
+
+.app_content_header .role_block .user_name,
+.app_content_header .issues_block .issues_counter {
+    color: #ffffff;
+    font-size: 23px;
+}
+
+.main_stats {
+    width: 100%;
+}
+
+.main_stats .main_stats_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: 2em;
+}
+
+.main_stats .main_stats_header .stats_info {
+    padding: 1%;
+
+    color: #000000;
+    font-size: .9vw;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    background-color: #9c9c9c;
+    border-radius: 4px;
+}
+
+.main_stats canvas {
+    width: 100%;
+
+    margin-bottom: 4em;
+}
+
+.main_stats .second_stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: 4em;
+}
+
+.second_stats .stat {
+    width: 30%;
+}
+
+.third_stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.third_stats .column {
+    display: flex;
+    flex-direction: column;
+    
+    width: 48%;
+}
+
+.third_stats .stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: 2em;
+}
+
+.third_stats .stat .stat_text {
+    color: #ffffff;
+    font-size: 12px;
+    letter-spacing: .15vw;
+    text-transform: uppercase;
+}
+
+.third_stats .stat .stat_background_line {
+    position: relative;
+    width: 65%;
+    height: .3em;
+
+    background-color: #4e4e4e;
+    border-radius: 3px;
+}
+
+.third_stats .stat .stat_background_line .stat_line {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 25%;
+    height: .3em;
+
+    background-color: #ffffff;
+    border-radius: 3px;
+}
+
+/* #4e4e4e; #2d2d2d */

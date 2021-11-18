@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./index.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="app_wrapper" id="app-wrapper">
+        <div class="left_sidebar" id="left-sidebar">
+            <div class="user_block" id="user-block">
+                <div class="user_photo" id="user-photo">A</div>
+
+                <div class="user_info" id="user-info">Albert</div>
+            </div>
+
+            <div class="navbar" id="navbar">
+                <div class="navbar_item">
+                    <div class="item_active_elm"></div>
+
+                    <a href="#" class="active">Dashboard</a>
+                </div>
+                
+                <div class="navbar_item">
+                    <a href="#">Members</a>
+                </div>
+
+                <div class="navbar_item">
+                    <a href="#">Database</a>
+                </div>
+
+                <div class="navbar_item">
+                    <a href="#">Statistics</a>
+                </div>
+
+                <div class="navbar_item">
+                    <a href="#">Settings</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="app_content" id="app-content">
+            <div class="app_content_header" id="app-content-header">
+                <div class="role_block" id="role-block">
+                    <div class="__text" id="user-role">support team</div>
+
+                    <div class="user_name" id="user-name">Welcome, Albert!</div>
+                </div>
+
+                <div class="issues_block" id="issues-block">
+                    <div class="__text" id="issues-text">total issues</div>
+
+                    <div class="issues_counter" id="issues-counter">500</div>
+                </div>
+            </div>
+
+            <div class="main_stats" id="main-stats">
+                <div class="main_stats_header" id="main-stats-header">
+                    <div class="__text" id="stats-text">monthly stats</div>
+
+                    <div class="stats_info" id="stats-info">+ 50,05%</div>
+                </div>
+
+                <canvas id="canvas" width="800" height="300">Your browser is not support graphics</canvas>
+
+                <div class="second_stats" id="second-stats">
+                    <div class="stat" id="stat-1">
+                        <div class="__text">total growth</div>
+                    </div>
+
+                    <div class="stat" id="stat-2">
+                        <div class="__text">total gross</div>
+                    </div>
+
+                    <div class="stat" id="stat-3">
+                        <div class="__text">popularity</div>
+                    </div>
+                </div>
+
+                <div class="third_stats" id="third-stats">
+                    <div class="column">
+                        <div class="stat" id="stat-1">
+                            <div class="stat_text">happines</div>
+
+                            <div class="stat_background_line">
+                                <div class="stat_line"></div>
+                            </div>
+                        </div>
+    
+                        <div class="stat" id="stat-2">
+                            <div class="stat_text">comfort</div>
+
+                            <div class="stat_background_line">
+                                <div class="stat_line"></div>
+                            </div>
+                        </div>
+    
+                        <div class="stat" id="stat-3">
+                            <div class="stat_text">failures</div>
+
+                            <div class="stat_background_line">
+                                <div class="stat_line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="column">
+                        <div class="stat" id="stat-4">
+                            <div class="stat_text">errors</div>
+
+                            <div class="stat_background_line">
+                                <div class="stat_line"></div>
+                            </div>
+                        </div>
+    
+                        <div class="stat" id="stat-5">
+                            <div class="stat_text">involvement</div>
+
+                            <div class="stat_background_line">
+                                <div class="stat_line"></div>
+                            </div>
+                        </div>
+    
+                        <div class="stat" id="stat-6">
+                            <div class="stat_text">interest</div>
+
+                            <div class="stat_background_line">
+                                <div class="stat_line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

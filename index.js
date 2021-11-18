@@ -9,16 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         LINE_WIDTH = 12,
         MAX_COLS = 6;
 
-    function renderMainLine(ctx, x) {
-        ctx.fillStyle = '#3c3c3c';
-        ctx.fillRect(x, 0, LINE_WIDTH, DPI_HEIGHT);
-    }
-
-    function renderSecondLine(ctx, x, i) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x, calculateLinePadding(lines[i].height), LINE_WIDTH, calculateLineHeight(lines[i].height));
-    }
-
     function calculateLinePadding(h) {
         return DPI_HEIGHT-(DPI_HEIGHT/100*h);
     }
@@ -29,6 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function calculateLineMargin(cols, id) {
         return Math.round((DPI_WIDTH-LINE_WIDTH*cols)/cols)*id;
+    }
+
+    function renderMainLine(ctx, x) {
+        ctx.fillStyle = '#3c3c3c';
+        ctx.fillRect(x, 0, LINE_WIDTH, DPI_HEIGHT);
+    }
+
+    function renderSecondLine(ctx, x, i) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x, calculateLinePadding(lines[i].height), LINE_WIDTH, calculateLineHeight(lines[i].height));
     }
 
     function chart(canvas, data, lines) {

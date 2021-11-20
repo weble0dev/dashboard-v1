@@ -11,24 +11,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function calculateLinePadding(h) {
         return DPI_HEIGHT-(DPI_HEIGHT/100*h);
-    }
+    };
 
     function calculateLineHeight(h) {
         return DPI_HEIGHT/100*h;
-    }
+    };
 
     function calculateLineMargin(cols, id) {
         return Math.round((DPI_WIDTH-LINE_WIDTH*cols)/cols)*id;
-    }
+    };
 
     function renderMainLine(ctx, x) {
         ctx.fillStyle = '#3c3c3c';
         ctx.fillRect(x, 0, LINE_WIDTH, DPI_HEIGHT);
-    }
+        return;
+    };
 
     function renderSecondLine(ctx, x, i) {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(x, calculateLinePadding(lines[i].height), LINE_WIDTH, calculateLineHeight(lines[i].height));
+        return;
+    };
+
+    function renderChartText(ctx, x) {
+        ctx.font = '2.25em sans-serif';
+        ctx.fillStyle = '#ffffff';
+        x = x+(DPI_WIDTH/10-LINE_WIDTH*MAX_COLS);
+        ctx.fillText('Hello', x, DPI_HEIGHT);
+        return;
     }
 
     function chart(canvas, data, lines) {
@@ -43,15 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         for (let i = 0; i < MAX_COLS; i++) {
             const width = calculateLineMargin(MAX_COLS, lines[i].id);
+
             renderMainLine(ctx, width);
             renderSecondLine(ctx, width, i);
+            renderChartText(ctx, width);
         }
 
         ctx.closePath();
-
-        calculateLineMargin(MAX_COLS)
-
-        console.log(lines)
     }
 
     chart(canvas, data = {

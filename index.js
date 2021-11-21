@@ -2,15 +2,57 @@ document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('canvas'),
     
         WIDTH = canvas.offsetWidth,
-        HEIGHT = 300,
+        HEIGHT = document.body.offsetHeight/2,
         DPI_WIDTH = WIDTH * 2,
         DPI_HEIGHT = HEIGHT * 2,
         
         LINE_WIDTH = 12,
-        MAX_COLS = 6;
+        LINE_LEFT_MARGIN = document.body.offsetWidth/25;
+        MAX_COLS = 6,
+        PADDING_BOTTOM = 10,
+
+        FONT_SIZE = 30,
+
+        MAIN_CHART_DATA = [
+            line = {
+                id: 0,
+                users: 14,
+                month: 'jan'
+            },
+    
+            line = {
+                id: 1,
+                users: 28,
+                month: 'feb'
+            },
+    
+            line = {
+                id: 2,
+                users: 72,
+                month: 'mar'
+            },
+    
+            line = {
+                id: 3,
+                users: 85,
+                month: 'apr'
+            },
+    
+            line = {
+                id: 4,
+                users: 36,
+                month: 'may'
+            },
+    
+            line = {
+                id: 5,
+                users: 4,
+                month: 'june'
+            }
+        ];
 
     function calculateLinePadding(h) {
-        return DPI_HEIGHT-(DPI_HEIGHT/100*h);
+        return DPI_HEIGHT-(DPI_HEIGHT/100*h)-(FONT_SIZE/2);
     };
 
     function calculateLineHeight(h) {
@@ -23,25 +65,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderMainLine(ctx, x) {
         ctx.fillStyle = '#3c3c3c';
-        ctx.fillRect(x, 0, LINE_WIDTH, DPI_HEIGHT);
+        ctx.fillRect(x, 0, LINE_WIDTH, DPI_HEIGHT-(PADDING_BOTTOM+FONT_SIZE/2));
         return;
     };
 
-    function renderSecondLine(ctx, x, i) {
+    function renderSecondLine(ctx, x, i, users) {
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x, calculateLinePadding(lines[i].height), LINE_WIDTH, calculateLineHeight(lines[i].height));
+        ctx.fillRect(x, calculateLinePadding(users), LINE_WIDTH, calculateLineHeight(users));
         return;
     };
 
-    function renderChartText(ctx, x) {
-        ctx.font = '2.25em sans-serif';
+    function renderChartText(ctx, x, month) {
+        ctx.font = `${FONT_SIZE}px sans-serif`;
         ctx.fillStyle = '#ffffff';
-        x = x+(DPI_WIDTH/10-LINE_WIDTH*MAX_COLS);
-        ctx.fillText('Hello', x, DPI_HEIGHT);
+        ctx.fillText(month.toUpperCase(), x+LINE_LEFT_MARGIN, DPI_HEIGHT-10);
         return;
     }
 
-    function chart(canvas, data, lines) {
+    function chart(canvas, data, mainChartData) {
         const ctx = canvas.getContext("2d");
 
         canvas.style.width = data.WIDTH + 'px';
@@ -52,11 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.beginPath();
         
         for (let i = 0; i < MAX_COLS; i++) {
-            const width = calculateLineMargin(MAX_COLS, lines[i].id);
+            const width = calculateLineMargin(MAX_COLS, mainChartData[i].id);
 
             renderMainLine(ctx, width);
-            renderSecondLine(ctx, width, i);
-            renderChartText(ctx, width);
+            renderSecondLine(ctx, width, i, mainChartData[i].users);
+            renderChartText(ctx, width, mainChartData[i].month);
         }
 
         ctx.closePath();
@@ -67,37 +108,5 @@ document.addEventListener('DOMContentLoaded', function() {
         HEIGHT: HEIGHT,
         DPI_WIDTH: DPI_WIDTH,
         DPI_HEIGHT: DPI_HEIGHT,
-    },
-    
-    lines = [
-        line = {
-            id: 0,
-            height: 14,
-        },
-
-        line = {
-            id: 1,
-            height: 28,
-        },
-
-        line = {
-            id: 2,
-            height: 72,
-        },
-
-        line = {
-            id: 3,
-            height: 85,
-        },
-
-        line = {
-            id: 4,
-            height: 36,
-        },
-
-        line = {
-            id: 5,
-            height: 4
-        }
-    ])
+    }, MAIN_CHART_DATA)
 });

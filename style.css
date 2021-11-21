@@ -52,8 +52,8 @@ body {
     align-items: center;
     justify-content: center;
 
-    width: 3vw;
-    height: 3vw;
+    width: 1.5em;
+    height: 1.5em;
 
     margin-right: 5%;
 
@@ -62,12 +62,12 @@ body {
 
     color: #3866ff;
     font-weight: bold;
-    font-size: 2vw;
+    font-size: 2em;
 }
 
 .user_info {
     color: #ffffff;
-    font-size: 1.25vw;
+    font-size: 1em;
 }
 
 .navbar {
@@ -143,7 +143,7 @@ body {
 .app_content_header .role_block .user_name,
 .app_content_header .issues_block .issues_counter {
     color: #ffffff;
-    font-size: 23px;
+    font-size: 1.25em;
 }
 
 .main_stats {
@@ -164,7 +164,7 @@ body {
     padding: 1%;
 
     color: #000000;
-    font-size: .9vw;
+    font-size: .8em;
     font-weight: bold;
     text-transform: uppercase;
 

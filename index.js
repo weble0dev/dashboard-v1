@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         DPI_HEIGHT = HEIGHT * 2,
         
         LINE_WIDTH = 12,
-        LINE_LEFT_MARGIN = document.body.offsetWidth/25;
+        TEXT_LEFT_MARGIN = document.body.offsetWidth/25;
         MAX_COLS = 6,
         PADDING_BOTTOM = 10,
 
@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
         MAIN_CHART_DATA = [
             line = {
                 id: 0,
-                users: 14,
+                users: 5,
                 month: 'jan'
             },
     
             line = {
                 id: 1,
-                users: 28,
+                users: 7,
                 month: 'feb'
             },
     
@@ -46,17 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
             line = {
                 id: 5,
-                users: 4,
+                users: 54,
                 month: 'june'
             }
         ];
 
-    function calculateLinePadding(h) {
-        return DPI_HEIGHT-(DPI_HEIGHT/100*h)-(FONT_SIZE/2);
+    function calculateUserDifference(u1, u2) {
+        return (u2-u1)*100/u1;
+    }
+
+    function calculateLinePadding(u1, u2) {
+        return DPI_HEIGHT-(DPI_HEIGHT/100*calculateUserDifference(u1, u2))-(PADDING_BOTTOM+FONT_SIZE/2);
     };
 
-    function calculateLineHeight(h) {
-        return DPI_HEIGHT/100*h;
+    function calculateLineHeight(u1, u2) {
+        return DPI_HEIGHT/100*calculateUserDifference(u1, u2);
     };
 
     function calculateLineMargin(cols, id) {
@@ -64,21 +68,26 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     function renderMainLine(ctx, x) {
+        const lineHeight = DPI_HEIGHT-(PADDING_BOTTOM+FONT_SIZE/2);
+        
         ctx.fillStyle = '#3c3c3c';
-        ctx.fillRect(x, 0, LINE_WIDTH, DPI_HEIGHT-(PADDING_BOTTOM+FONT_SIZE/2));
+        ctx.fillRect(x, 0, LINE_WIDTH, lineHeight);
+        
         return;
     };
 
-    function renderSecondLine(ctx, x, i, users) {
+    function renderSecondLine(ctx, x, i, u1, u2) {
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x, calculateLinePadding(users), LINE_WIDTH, calculateLineHeight(users));
+        ctx.fillRect(x, calculateLinePadding(u1, u2), LINE_WIDTH, calculateLineHeight(u1, u2));
+        
         return;
     };
 
     function renderChartText(ctx, x, month) {
         ctx.font = `${FONT_SIZE}px sans-serif`;
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(month.toUpperCase(), x+LINE_LEFT_MARGIN, DPI_HEIGHT-10);
+        ctx.fillText(month.toUpperCase(), x+TEXT_LEFT_MARGIN, DPI_HEIGHT-10);
+        
         return;
     }
 
@@ -93,14 +102,31 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.beginPath();
         
         for (let i = 0; i < MAX_COLS; i++) {
-            const width = calculateLineMargin(MAX_COLS, mainChartData[i].id);
+            const width = calculateLineMargin(MAX_COLS, mainChartData[i].id),
+                users2 = mainChartData[i].users;
+
+            let users1 = mainChartData[i];
+
+            if (users1.id === 0) {
+                users1 = 0;
+            } else {
+                users1 = mainChartData[i-1].users 
+            }
 
             renderMainLine(ctx, width);
-            renderSecondLine(ctx, width, i, mainChartData[i].users);
+            
+            if (mainChartData[i].id === 0) {
+                renderSecondLine(ctx, width, i, 0, 0);
+            } else {
+                renderSecondLine(ctx, width, i, users1, users2);
+            };
+            
             renderChartText(ctx, width, mainChartData[i].month);
         }
 
         ctx.closePath();
+
+        return;
     }
 
     chart(canvas, data = {

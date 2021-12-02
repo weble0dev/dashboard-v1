@@ -52,7 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
         ];
 
     function calculateUserDifference(u1, u2) {
-        return (u2-u1)*100/u1;
+        if (u2-u1 > 0) {
+            return (u2-u1)*100/u1;
+        } else {
+            return (u1-u2)*100/u1;
+        };
     }
 
     function calculateLinePadding(u1, u2) {
@@ -77,8 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     function renderSecondLine(ctx, x, i, u1, u2) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x, calculateLinePadding(u1, u2), LINE_WIDTH, calculateLineHeight(u1, u2));
+        const result = calculateLineHeight(u1, u2);
+
+        if (u2-u1 < 0) {
+            ctx.fillStyle = '#ad0b0b';
+        } else {
+            ctx.fillStyle = '#ffffff';
+        };
+
+        ctx.fillRect(x, calculateLinePadding(u1, u2), LINE_WIDTH, result);
         
         return;
     };
